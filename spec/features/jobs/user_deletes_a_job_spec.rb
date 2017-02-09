@@ -9,7 +9,8 @@ describe 'User deletes a job' do
                               description: 'Awesome Stuff')
 
     visit company_job_path(company, job)
-    click_link "Delete This Job"
+    expect { click_link "Delete This Job" }.to change(Job, :count).by(-1)
+
 
     expect(current_path).to eq company_jobs_path(company)
     expect(page).to_not have_content("Web Developer")
