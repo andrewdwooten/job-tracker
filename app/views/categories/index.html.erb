@@ -5,6 +5,7 @@
     <li>
       <%= link_to category.title, category_path(category) %>
       <%= button_to 'Delete Category',  category_path(category), method: 'delete' %>
+      <%= button_to 'Edit Category',  edit_category_path(category), method: 'get' %>
     </li>
   <% end %>
 </ul>
