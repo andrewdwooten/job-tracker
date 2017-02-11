@@ -16,7 +16,7 @@ class JobsController < ApplicationController
       flash[:success] = "You created #{@job.title} at #{@company.name}"
       redirect_to company_job_path(@company, @job)
     else
-      render :new
+      redirect_to new_company_job_path(@company)
     end
   end
 
