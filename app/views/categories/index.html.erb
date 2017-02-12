@@ -1,11 +1,11 @@
 <h1>Categories Index</h1>
 
-<ul>
-  <% @categories.each do |category| %>
-    <li>
-      <%= link_to category.title, category_path(category) %>
-      <%= button_to 'Delete Category',  category_path(category), method: 'delete' %>
-      <%= button_to 'Edit Category',  edit_category_path(category), method: 'get' %>
-    </li>
-  <% end %>
+<% @categories.each do |category| %>
+<ul class="list-group">
+  <li class="list-group-item">
+    <font size='12'><%= link_to category.title, category_path(category) %></font>
+    <%= button_to 'Delete Category',  category_path(category), method: 'delete' %>
+    <%= button_to 'Edit Category',  edit_category_path(category), method: 'get' %>
+  </li>
 </ul>
+<% end %>
