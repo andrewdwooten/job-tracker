@@ -1,5 +1,12 @@
 All Jobs for <strong><%= @company.name %></strong>
 
+<%= button_to "Add a Job", new_company_job_path(@company), method: 'get' %>
 <% @jobs.each do |job| %>
-  <ul><%= job.title %> at <%= job.company.name %></ul>
+  <ul class="list-group">
+    <li class="list-group-item">
+      <font size='12'><%= link_to job.title, company_job_path(@company, job) %></font>
+      <%= button_to 'Delete Job',  company_job_path(@company, job), method: 'delete' %>
+      <%= button_to 'Edit Job',  edit_company_job_path(@company, job), method: 'get' %>
+    </li>
+  </ul>
 <% end %>
