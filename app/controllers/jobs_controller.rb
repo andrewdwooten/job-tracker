@@ -37,17 +37,20 @@ class JobsController < ApplicationController
       flash[:success] = "You updated #{@job.title} position at #{@company.name}"
       redirect_to company_job_path(@company, @job)
     else
-      render :edit
+      redirect_to edit_company_job_path(@company, @job)
     end
   end
 
   def destroy
-    # implement on your own!
+    job = Job.find(params[:id])
+    company = job.company
+    job.destroy
+    redirect_to company_jobs_path(company)
   end
 
   private
 
   def job_params
-    params.require(:job).permit(:title, :description, :level_of_interest, :city)
+    params.require(:job).permit(:title, :description, :level_of_interest, :city, :category_id)
   end
 end
