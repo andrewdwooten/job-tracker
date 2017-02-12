@@ -1,20 +1,22 @@
 require 'rails_helper'
 
-describe 'User edits a test' do
+describe 'User edits a job' do
   context 'with valid params' do
     scenario 'a user can edit a job' do
 
       company = Company.create(name: "Apple")
+      cat = Category.create(title: "Test")
       job = company.jobs.create(title: 'Web Developer',
                                 level_of_interest: 8,
                                 city: 'Denver',
-                                description: 'Awesome Stuff')
+                                description: 'Awesome Stuff',
+                                category_id: cat.id)
 
       visit edit_company_job_path(company, job)
       fill_in 'job[title]', with: 'Awesome Developer'
       fill_in 'job[city]',  with: 'Cupertino'
       fill_in 'job[description]', with: 'Cool things'
-      click_button "Update"
+      click_button "Update Job"
 
       expect(current_path).to eq company_job_path(company, job)
       expect(page).to have_content('Awesome Developer')
@@ -27,11 +29,13 @@ describe 'User edits a test' do
   end
     context 'with invalid params' do
       scenario 'a user cannot edit to invalid params' do
+        cat = Category.create(title: "Test")
         company = Company.create(name: "Apple")
         job = company.jobs.create(title: 'Web Developer',
                                   level_of_interest: 8,
                                   city: 'Denver',
-                                  description: 'Awesome Stuff')
+                                  description: 'Awesome Stuff',
+                                  category_id: cat.id)
 
         visit edit_company_job_path(company, job)
         fill_in 'job[title]', with: ''

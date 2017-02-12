@@ -13,10 +13,9 @@ describe "User creates a new job" do
           click_button "Create"
 
           expect(current_path).to eq new_company_job_path(company)
-          expect(page).to have_content("ESPN")
-          expect(page).to have_content("Developer")
-          expect(page).to have_content("80")
-          expect(page).to have_content("Denver")
+          expect(page).to have_field('job_title')
+          expect(page).to have_field('job_city')
+          expect(page).to have_field('job_description')
         end
     end
   context "with category selection" do
