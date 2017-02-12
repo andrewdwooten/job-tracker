@@ -5,7 +5,7 @@ describe "User deletes existing company" do
     company = Company.create(name: "ESPN")
     visit companies_path
 
-    within(".company_#{company.id}") do
+    within(".list-group-item") do
       click_link "Delete"
     end
 
