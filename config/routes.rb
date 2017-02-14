@@ -7,9 +7,14 @@ Rails.application.routes.draw do
 
   resources :categories
 
-  resources :jobs do
+  resources :jobs, except: [:index, :create, :new, :edit, :show, :update, :destroy] do
     resources :comments, only: [ :create ]
   end
+
+  get '/dashboard' => 'application#index'
+
+  root to: 'companies#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
