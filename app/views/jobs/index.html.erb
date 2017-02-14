@@ -1,12 +1,33 @@
-All Jobs for <strong><%= @company.name %></strong>
+<h2>All Jobs for <strong><%= @company.name %></strong></h2>
 
 <%= button_to "Add a Job", new_company_job_path(@company), method: 'get' %>
+
+<h3>Contacts</h3>
+<div class="row">
+  <% @company.contacts.each do |contact| %>
+    <ul class="list-group">
+      <div class='col-md-3'>
+        <li class='list-group-item'>
+          <%= contact.name %> <br/>
+          <%= contact.position %><br/>
+          <%= contact.email %>
+        </li>
+      </div>
+      <% end %>
+
+    </ul>
+</div> </br>
+<%= render partial: '/contacts/form' %>
+<div class="row">
 <% @jobs.each do |job| %>
   <ul class="list-group">
-    <li class="list-group-item">
-      <font size='12'><%= link_to job.title, company_job_path(@company, job) %></font>
-      <%= button_to 'Delete Job',  company_job_path(@company, job), method: 'delete' %>
-      <%= button_to 'Edit Job',  edit_company_job_path(@company, job), method: 'get' %>
-    </li>
+    <div class="col-md-4">
+      <li class="list-group-item">
+        <%= link_to job.title, company_job_path(@company, job) %>
+        <%= button_to 'Delete Job',  company_job_path(@company, job), method: 'delete' %>
+        <%= button_to 'Edit Job',  edit_company_job_path(@company, job), method: 'get' %>
+      </li>
+    </div>
+  <% end %>
   </ul>
-<% end %>
+</div>
