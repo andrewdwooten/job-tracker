@@ -1,0 +1,15 @@
+<h2>Job Tracker Dashboard</h2>
+
+<div class="row">
+<% @jobs.each do |interest, job| %>
+  <ul class="list-group">
+    <div class="col-md-2">
+      <li class="list-group-item">
+        Interest level:<%= interest %></br>
+        Job count: <%= job.count %>
+      </li>
+    </div>
+  </ul>
+</div>
+<% end %>
+</ul>
